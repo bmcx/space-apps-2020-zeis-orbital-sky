@@ -358,7 +358,7 @@
 
       //
       this.satelliteHover = satellite;
-    //   console.log(satellite?.metadata.name);
+      console.log(satellite?.metadata.name);
       if (this.satelliteHover !== null) {
         var p = this.normal.geometry.getAttribute("position");
         vertex.push(p.getX(index), p.getY(index), p.getZ(index));

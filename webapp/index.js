@@ -217,7 +217,9 @@
         !isNaN(latlonh.height)
       ) {
         // Set new values for heading and tilt
-        camera.position = [latlonh.longitude, latlonh.latitude , latlonh.height ];
+        
+        // camera.position = [latlonh.longitude, latlonh.latitude , latlonh.height ];
+
         // camera.spatialReference = {
         //     wkid: 102100,
         //     latestWkid: 3857,
