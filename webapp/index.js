@@ -11,6 +11,8 @@
   "esri/Camera",
   "esri/views/SceneView",
   "esri/views/3d/externalRenderers",
+  "esri/layers/GraphicsLayer",
+  "esri/Graphic",
   "root/renderer",
   "dojo/number",
   "dojo/string",
@@ -21,6 +23,8 @@
   Camera,
   SceneView,
   ExternalRenderers,
+  GraphicsLayer,
+  Graphic,
   Renderer,
   number,
   string
@@ -127,12 +131,12 @@
 
     // Rendering variables.
     var renderer = null;
-
+    var map = new Map({
+      basemap: "dark-gray-vector",
+    });
     // Create map and view
     var view = new SceneView({
-      map: new Map({
-        basemap: "dark-gray-vector",
-      }),
+      map: map,
       container: "map",
       ui: {
         components: ["zoom", "compass"],
@@ -156,6 +160,17 @@
         },
       },
     });
+    // Defines an action to zoom out from the selected feature
+    var zoomOutAction = {
+      // This text is displayed as a tooltip
+      title: "Zoom out",
+      // The ID by which to reference the action in the event handler
+      id: "zoom-out",
+      // Sets the icon font used to style the action button
+      className: "esri-icon-zoom-out-magnifying-glass",
+    };
+    // Adds the custom action to the popup.
+    view.popup.actions.push(zoomOutAction);
     view.when(function () {
       // Set initial camera position
       view.set(
@@ -185,6 +200,32 @@
         // Show satellite count
         updateCounter();
 
+        var graphicsLayer = new GraphicsLayer();
+        map.add(graphicsLayer);
+
+        var point = {
+          type: "point", // autocasts as new Point()
+          x: 80,
+          y: 7.48791,
+          z: 1010,
+        };
+
+        var markerSymbol = {
+          type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+          color: [226, 119, 40],
+          outline: {
+            color: [255, 255, 255],
+            width: 1,
+          },
+        };
+
+        var pointGraphic = new Graphic({
+          geometry: point,
+          symbol: markerSymbol,
+        });
+
+        graphicsLayer.add(pointGraphic);
+
         // Load metadata
         loadMetadata().done(function (metadata) {
           $.each(renderer.satellites, function () {
@@ -205,7 +246,6 @@
         return;
       }
 
-      
       var latlonh = renderer.getSatelliteLocationAsLatLon(sat.satrec, date);
       console.log(latlonh);
       var camera = view.camera.clone();
@@ -217,7 +257,7 @@
         !isNaN(latlonh.height)
       ) {
         // Set new values for heading and tilt
-        
+
         // camera.position = [latlonh.longitude, latlonh.latitude , latlonh.height ];
 
         // camera.spatialReference = {

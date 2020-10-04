@@ -73,8 +73,8 @@
         new THREE.BufferGeometry(),
         new THREE.PointsMaterial({
           color: 0xffffff,
-          size: 4,
-          sizeAttenuation: false,
+          size: 1,
+          sizeAttenuation: true,
           vertexColors: THREE.NoColors,
           fog: true,
         })
@@ -110,7 +110,7 @@
           color: 0xffffff,
           linewidth: 1,
           vertexColors: THREE.NoColors,
-          fog: false,
+          fog: true,
         })
       );
       this.trajectory.frustumCulled = false;
@@ -297,11 +297,11 @@
       return position_and_velocity.position;
     },
     getSatelliteLocationAsLatLon: function (satrec, date) {
-      var position_and_velocity = satellite.propagate(satrec, date);
+      var prop = satellite.propagate(satrec, date);
 
       var gmst = satellite.gstime(date);
       console.log(gmst);
-      var positionGd = satellite.eciToGeodetic(position_and_velocity.position, gmst)
+      var positionGd = satellite.eciToGeodetic(prop.position, gmst)
       return positionGd;
     },
     updateSelection: function () {
@@ -313,6 +313,7 @@
           continue;
         }
         var p = this.normal.geometry.getAttribute("position");
+        console.log(p)
         vertex.push(p.getX(i), p.getY(i), p.getZ(i));
       }
 
@@ -358,7 +359,7 @@
 
       //
       this.satelliteHover = satellite;
-      console.log(satellite?.metadata.name);
+      // console.log(satellite?.metadata.name);
       if (this.satelliteHover !== null) {
         var p = this.normal.geometry.getAttribute("position");
         vertex.push(p.getX(index), p.getY(index), p.getZ(index));

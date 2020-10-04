@@ -1,20 +1,209 @@
-﻿/* ------------------------------------------------------------
+﻿*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
 
-   Copyright 2015 Esri
+.overlay{
+    position: absolute;
+    z-index: 99;
+}
+.esri-ui-top-left {
+    top: 0;
+    right: 0;
+    left: unset;
+}
+.logo img{
+    width: 50px;
+    margin-top: -7px;
+    margin-right: 48px;
+}
+#earth{
+    width: 50%;
+    margin-left: 350px;
+    padding-top: 100px;
 
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at:
-   https://www.apache.org/licenses/LICENSE-2.0
+}
+.sidebar{
+    position: fixed;
+    left: -250px;
+    width: 190px;
+    height: 100%;
+    background:#042331;
+    transition: all .4s ease;
 
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+}
+.sidebar header{
+    font-size: 20px;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    line-height: center;
+    background: #42455a;
+    user-select: none;
 
---------------------------------------------------------------- */
+}
+.sidebar ul a{
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 65px;
+    font-size: 20px;
+    color: white;
+    padding-left: 20px;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(255,255,255,.1);
+    border-bottom: 1pxsolid black;
+    transition: .4s;
+}
+ul li:hover a{
+    padding-left: 50px;
+}
+.sidebar ul a i {
+    margin-right: 16px;
+}
+.search{
+    width: 185px;
+    height: 30px;
+    text-align: center;
+}
+#check{
+    display: none;
+}
+label #btn, label #cancel{
+    position: absolute;
+    cursor: pointer;
+    
+    border-radius: 3px;
+}
+label #btn{
+    left: 20px;
+    top: 20px;
+    font-size: 35px;
+    color:white;
+    padding: 6px 12px;
+    transition: all .5s ease;
+}
+label #cancel{
+    z-index: 1111;
+    left: -400px;
+    top: 20px;
+    font-size: 30px;
+    color: teal;
+    padding: 4px 9px;
+    transition: all .5s ease;
+}
+#check:checked ~ .sidebar{
+    left: 0;
+}
+#check:checked ~ label #btn{
+    left: 150px;
+    opacity: 0;
+    pointer-events: none;
 
+}
+#check:checked ~ label #cancel{
+    left: 150px;
+}
+.zoom{
+    margin-left: 80%;
+    margin-top: 70px;
+}
+.zoom1{
+    border: none;
+    background-color: #042331;
+    color: aliceblue;
+    border-radius: 7px;
+    padding: 1px 4px;
+    text-align: center;
+    display: inline-block;
+    font-size: 19px;
+    margin: 15px 12px;
+}
+.zoom2{
+    border: none;
+    border-radius: 7px;
+    color: aliceblue;
+    background-color: #042331;
+    padding: 2px 6px;
+    text-align: center;
+    display: inline-block;
+    font-size: 19px;
+    margin: 15px 12px;
+}
+.search input[type=text] {
+    float: right;
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 17px;
+  }
+.info{
+    margin-top: 30px;
+}
+.info h1{
+    color: white;
+    text-align: center;
+    padding-bottom: 20px;
+}
+.info p{
+ margin-left: 250px;
+ line-height: 27px;
+ color-adjust:rgb(0, 0, 0) ;
+ 
+}
+.contact{
+    margin-left: 400px;
+    margin-top: 40px;
+    width: 50%;
+    background-color: #42455a    ;
+    
+}
+.contact-element{
+    width: -webkit-fill-available;
+    padding: 12px 0px 9px 8px;
+    border: 1px solid white;
+    background-color: #42455a    ;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+label{
+    display: block;
+}
+
+input[type=submit]{
+    border:none;
+    padding: 10px 40px;
+    background-color:darkgreen;
+    border-radius: 20px;
+    margin:0 auto;
+    display: block;
+    cursor: pointer;
+    
+
+}
+input[type=sumbit] :hover{
+    background-color :  rgb(57, 167, 57);
+    transition: ease-in 2s;
+}
+.support{
+    margin-top: 30px;
+}
+.support h1{
+    color: white;
+    text-align: center;
+    padding-bottom: 20px;
+}
+.support p{
+ margin-left: 250px;
+ line-height: 27px;
+ color-adjust:rgb(0, 0, 0) ;
+ 
+}
+
+ 
 html, body {
     overflow: hidden;
     margin: 0;
@@ -36,12 +225,6 @@ html, body {
     height: 50px;
     background-color: #2D6CA2;
     border-bottom: 1px solid black;
-}
-
-#logo-esri {
-    position: absolute;
-    left: 5px;
-    top: 4px;
 }
 
 #heading {
