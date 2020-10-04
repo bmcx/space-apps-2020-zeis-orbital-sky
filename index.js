@@ -128,7 +128,7 @@
     var NASA_SATELLITE_DATABASE =
       "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id="; // use International id
     var N2YO_SATELLITE_DATABASE = "https://www.n2yo.com/satellite/?s="; // use NORAD id
-
+    var IP_LATLON_API = "http://ip-api.com/json/";
     // Rendering variables.
     var renderer = null;
     var map = new Map({
@@ -199,32 +199,32 @@
 
         // Show satellite count
         updateCounter();
-
         var graphicsLayer = new GraphicsLayer();
         map.add(graphicsLayer);
+        getLatLonFromIp("112.134.188.34").then((loc) => {
+          var point = {
+            type: "point", // autocasts as new Point()
+            x: loc.lon,
+            y: loc.lat,
+            z: 1010,
+          };
 
-        var point = {
-          type: "point", // autocasts as new Point()
-          x: 80,
-          y: 7.48791,
-          z: 1010,
-        };
+          var markerSymbol = {
+            type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+            color: [226, 119, 40],
+            outline: {
+              color: [255, 255, 255],
+              width: 1,
+            },
+          };
 
-        var markerSymbol = {
-          type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
-          color: [226, 119, 40],
-          outline: {
-            color: [255, 255, 255],
-            width: 1,
-          },
-        };
+          var pointGraphic = new Graphic({
+            geometry: point,
+            symbol: markerSymbol,
+          });
 
-        var pointGraphic = new Graphic({
-          geometry: point,
-          symbol: markerSymbol,
+          graphicsLayer.add(pointGraphic);
         });
-
-        graphicsLayer.add(pointGraphic);
 
         // Load metadata
         loadMetadata().done(function (metadata) {
@@ -234,6 +234,7 @@
         });
       });
     });
+
     view.on("click", function (e) {
       // Highlighted satellite
       var sat = renderer.satelliteHover;
@@ -794,6 +795,12 @@
         $(name).slider("getAttribute", "min"),
         $(name).slider("getAttribute", "max"),
       ]);
+    }
+
+    async function getLatLonFromIp(ip) {
+      const resp = await fetch(IP_LATLON_API + ip);
+      const jsonData = await resp.json();
+      return jsonData;
     }
   });
 });
