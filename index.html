@@ -28,10 +28,24 @@
         <label for="check">
             <div>
                 <li class="logo" id="btn"><img src="img/satellite.png"><span id="sat-name">Orbital Sky</span></li>
-                <li class="logo" id="cancel"><img src="img/satellite-1984752-1677530.png"></li>
+                <li class="logo" id="cancel">X</li>
             </div>
         </label>
-
+        <div class="info-how-to">Click on a object to view it's predicted orbit and info</div>
+        <div class="info-box" id="ibox">
+        <div id="info-box-title" ></div>
+        <div id="info-box-norad" ></div>
+        <div id="info-box-int" ></div>
+        <div id="info-box-name" ></div>
+        <div id="info-box-country" ></div>
+        <div id="info-box-period" ></div>
+        <div id="info-box-inclination" ></div>
+        <div id="info-box-apogee" ></div>
+        <div id="info-box-perigee" ></div>
+        <div id="info-box-size" ></div>
+        <div id="info-box-launch" ></div>
+        <a id="link-nasa" style="display: block;" target="_blank">View on NASA</a>
+        <a id="link-n2yo" target="_blank" >View on N2YO</a></div>
         <div class="sidebar">
             <header>Orbital Sky</header>
             <ul>
@@ -51,6 +65,9 @@
     <div id='bottom'>
         <div id='map'></div>
     </div>
+    <script>
+        $("#ibox").hide()
+    </script>
 </body>
 
 </html>

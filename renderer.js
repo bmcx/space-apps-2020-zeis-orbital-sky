@@ -388,6 +388,8 @@
       externalRenderers.requestRender(this.view);
     },
     showOrbit: function () {
+      
+      if (this.satelliteHover.metadata) {
       // Exit if no satellite currently under the user's mouse.
       if (this.satelliteHover === null) {
         return;
@@ -432,7 +434,7 @@
       );
 
       // Immediately request a new redraw
-      externalRenderers.requestRender(this.view);
+      externalRenderers.requestRender(this.view);}
     },
   });
 });

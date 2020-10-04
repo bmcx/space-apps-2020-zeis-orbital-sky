@@ -278,26 +278,42 @@
       //     tilt: 45,
       //   });
       // // Display information panel
-      // $('#infoWindow-title').html(sat.metadata.name);
-      // $('#infoWindow-norad').html(sat.id);
-      // $('#infoWindow-int').html(sat.metadata.int);
-      // $('#infoWindow-name').html(sat.metadata.name);
-      // $('#infoWindow-country').html(sat.metadata.country);
-      // $('#infoWindow-period').html(number.format(sat.metadata.period, {
-      //     places: 2
-      // }) + ' min');
-      // $('#infoWindow-inclination').html(sat.metadata.inclination + '°');
-      // $('#infoWindow-apogee').html(number.format(sat.metadata.apogee, {
-      //     places: 0
-      // }) + ' km');
-      // $('#infoWindow-perigee').html(number.format(sat.metadata.perigee, {
-      //     places: 0
-      // }) + ' km');
-      // $('#infoWindow-size').html(sat.metadata.size);
-      // $('#infoWindow-launch').html(sat.metadata.launch.toLocaleDateString());
-      // $('#link-nasa').attr('href', string.substitute(NASA_SATELLITE_DATABASE + '${id}', { id: sat.metadata.int }));
-      // $('#link-n2yo').attr('href', string.substitute(N2YO_SATELLITE_DATABASE + '${id}', { id: sat.id }));
-      // showDialog('info');
+      if (sat.metadata) {
+        $("#ibox").show(200);
+        $("#info-box-title").html("Object: "+sat.metadata.name);
+        $("#info-box-norad").html("NORAD ID: "+sat.id);
+        $("#info-box-int").html("INT ID: "+sat.metadata.int);
+        $("#info-box-name").html("Name: "+sat.metadata.name);
+        $("#info-box-country").html("Country: "+sat.metadata.country);
+        $("#info-box-period").html("Period: "+
+          number.format(sat.metadata.period, {
+            places: 2,
+          }) + " min"
+        );
+        $("#info-box-inclination").html("Inclination: "+sat.metadata.inclination + "°");
+        $("#info-box-apogee").html("Apogee: "+
+          number.format(sat.metadata.apogee, {
+            places: 0,
+          }) + " km"
+        );
+        $("#info-box-perigee").html("Perigee: "+
+          number.format(sat.metadata.perigee, {
+            places: 0,
+          }) + " km"
+        );
+        $("#info-box-size").html("Size: "+sat.metadata.size);
+        $("#info-box-launch").html("Launched from: "+sat.metadata.launch.toLocaleDateString());
+        $("#link-nasa").attr(
+          "href",
+          string.substitute(NASA_SATELLITE_DATABASE + "${id}", {
+            id: sat.metadata.int,
+          })
+        );
+        $("#link-n2yo").attr(
+          "href",
+          string.substitute(N2YO_SATELLITE_DATABASE + "${id}", { id: sat.id })
+        );
+      }
 
       // Display the orbit for the click satellite
       renderer.showOrbit();
