@@ -304,6 +304,9 @@
       var positionGd = satellite.eciToGeodetic(prop.position, gmst)
       return positionGd;
     },
+    setSatName: function(name) {
+      $('#sat-name').text(name)
+    },
     updateSelection: function () {
       // Get locations of selected satellites
       var vertex = [];
@@ -359,7 +362,7 @@
 
       //
       this.satelliteHover = satellite;
-      // console.log(satellite?.metadata.name);
+      this.setSatName(satellite?.metadata.name);
       if (this.satelliteHover !== null) {
         var p = this.normal.geometry.getAttribute("position");
         vertex.push(p.getX(index), p.getY(index), p.getZ(index));

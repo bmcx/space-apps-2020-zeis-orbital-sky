@@ -16,8 +16,11 @@
 }
 .logo img{
     width: 50px;
-    margin-top: -7px;
-    margin-right: 48px;
+    font-size: 14px;
+}
+#sat-name{
+    width: 200px;
+    display: block;
 }
 #earth{
     width: 50%;
@@ -28,7 +31,7 @@
 .sidebar{
     position: fixed;
     left: -250px;
-    width: 190px;
+    width: 220px;
     height: 100%;
     background:#042331;
     transition: all .4s ease;
@@ -64,7 +67,7 @@ ul li:hover a{
     margin-right: 16px;
 }
 .search{
-    width: 185px;
+    width: 220px;
     height: 30px;
     text-align: center;
 }
@@ -80,7 +83,7 @@ label #btn, label #cancel{
 label #btn{
     left: 20px;
     top: 20px;
-    font-size: 35px;
+    font-size: 14px;
     color:white;
     padding: 6px 12px;
     transition: all .5s ease;
