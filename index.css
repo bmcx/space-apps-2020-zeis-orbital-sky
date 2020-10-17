@@ -96,7 +96,7 @@ label #cancel{
     padding: 4px 9px;
     transition: all .5s ease;
 }
-#check:checked ~ .sidebar{
+/* #check:checked ~ .sidebar{
     left: 0;
 }
 #check:checked ~ label #btn{
@@ -107,7 +107,7 @@ label #cancel{
 }
 #check:checked ~ label #cancel{
     left: 190px;
-}
+} */
 .zoom{
     margin-left: 80%;
     margin-top: 70px;
